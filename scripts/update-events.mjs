@@ -49,21 +49,13 @@ function calendarDate(year, viewMonth, month, day) {
   return `${resolvedYear}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} 00:00`;
 }
 
-async function collectEventUrls(page, month) {
+async function loadCalendarPage(page, month) {
   await page.goto(`${SOURCE}/calendar/bar?month=${month}&ver=${Date.now()}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
   await page.waitForFunction(() => {
     const text = document.body.innerText || '';
     return text.length > 300 && !text.includes('이벤트를 불러오는 중');
   }, null, { timeout: 15_000 }).catch(() => {});
   await page.waitForTimeout(800);
-
-  return page.evaluate(() => {
-    const results = new Set();
-    document.querySelectorAll('a[href*="/events/"]').forEach((anchor) => {
-      results.add(new URL(anchor.getAttribute('href'), location.origin).href);
-    });
-    return [...results];
-  });
 }
 
 async function collectCalendarCards(page, month) {
@@ -149,11 +141,14 @@ async function main() {
     const calendarEvents = [];
     for (let offset = -1; offset <= 1; offset += 1) {
       const month = monthOffset(now, offset);
-      const found = await collectEventUrls(page, month);
-      found.forEach((url) => urls.add(url));
+      await loadCalendarPage(page, month);
       const cardResult = await collectCalendarCards(page, month);
       calendarEvents.push(...cardResult.cards);
-      diagnostics.months.push({ month, detailUrls: found.length, cards: cardResult.cards.length, bodySample: cardResult.cards.length ? undefined : cardResult.bodySample });
+      const targetUrls = cardResult.cards
+        .map((card) => card.url)
+        .filter((url) => url.includes('/events/'));
+      targetUrls.forEach((url) => urls.add(url));
+      diagnostics.months.push({ month, detailUrls: targetUrls.length, cards: cardResult.cards.length, bodySample: cardResult.cards.length ? undefined : cardResult.bodySample });
       await page.waitForTimeout(500);
     }
 
