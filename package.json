@@ -1,0 +1,16 @@
+{
+  "name": "game-calendar",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "update": "node scripts/update-events.mjs",
+    "check": "node --check app.js && node --check scripts/update-events.mjs",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "playwright": "^1.54.2",
+    "vite": "^7.1.1"
+  }
+}

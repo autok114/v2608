@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f8fc" />
+    <meta name="description" content="명조, 붕괴: 스타레일, 젠레스 존 제로의 월간 일정을 한눈에 확인하는 캘린더" />
+    <title>게임 월간 일정</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" type="module"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="heading">
+          <p class="eyebrow">HOYO MONTHLY CALENDAR</p>
+          <h1>게임 월간 일정</h1>
+          <p class="subtitle">명조 · 붕괴: 스타레일 · 젠레스 존 제로</p>
+        </div>
+        <div class="updated-wrap">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="updatedAt">일정을 불러오는 중</span>
+        </div>
+      </header>
+
+      <section class="controls" aria-label="캘린더 조작">
+        <div class="month-nav">
+          <button id="prevMonth" class="icon-button" type="button" aria-label="이전 달">‹</button>
+          <button id="monthLabel" class="month-label" type="button" aria-label="이번 달로 이동"></button>
+          <button id="nextMonth" class="icon-button" type="button" aria-label="다음 달">›</button>
+        </div>
+        <div class="filters" role="group" aria-label="게임 필터">
+          <button class="filter active" type="button" data-game="all">전체</button>
+          <button class="filter wuwa active" type="button" data-game="wuwa"><span></span>명조</button>
+          <button class="filter hsr active" type="button" data-game="hsr"><span></span>붕스</button>
+          <button class="filter zzz active" type="button" data-game="zzz"><span></span>젠존제</button>
+        </div>
+      </section>
+
+      <section class="calendar-card" aria-label="월간 게임 일정">
+        <div class="weekday-row" aria-hidden="true">
+          <div class="sunday">일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div class="saturday">토</div>
+        </div>
+        <div id="calendarGrid" class="calendar-grid" aria-live="polite"></div>
+      </section>
+
+      <footer>
+        <p>일정은 <a href="https://www.subgamecals.com/" target="_blank" rel="noreferrer">서브컬쳐 게임 일정</a>을 바탕으로 하루 한 번 갱신됩니다.</p>
+        <p>중요한 일정은 각 게임의 공식 공지를 최종 기준으로 확인해 주세요.</p>
+      </footer>
+    </main>
+
+    <dialog id="eventDialog" class="event-dialog">
+      <button id="closeDialog" class="dialog-close" type="button" aria-label="닫기">×</button>
+      <div id="dialogContent"></div>
+    </dialog>
+  </body>
+</html>
