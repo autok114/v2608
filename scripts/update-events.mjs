@@ -1,9 +1,10 @@
 import { chromium } from 'playwright';
-import { writeFile } from 'node:fs/promises';
+import { unlink, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
 const SOURCE = 'https://www.subgamecals.com';
 const OUTPUT = new URL('../public/data/events.json', import.meta.url);
+const DEBUG_OUTPUT = new URL('../public/data/update-debug.json', import.meta.url);
 const GAME_MAP = [
   { id: 'wuwa', names: ['명조: 워더링 웨이브', '명조:워더링 웨이브'] },
   { id: 'hsr', names: ['붕괴: 스타레일'] },
@@ -171,6 +172,7 @@ async function main() {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ locale: 'ko-KR', timezoneId: 'Asia/Seoul' });
   const now = new Date();
+  const diagnostics = { ranAt: new Date().toISOString(), months: [] };
 
   try {
     const urls = new Set();
@@ -179,7 +181,9 @@ async function main() {
       const month = monthOffset(now, offset);
       const found = await collectEventUrls(page, month);
       found.forEach((url) => urls.add(url));
-      if (found.length === 0) calendarEvents.push(...await collectCalendarCards(page, month));
+      const cards = await collectCalendarCards(page, month);
+      calendarEvents.push(...cards);
+      diagnostics.months.push({ month, detailUrls: found.length, cards: cards.length });
       await page.waitForTimeout(500);
     }
 
@@ -199,9 +203,11 @@ async function main() {
 
     if (unique.length < 3) throw new Error(`수집 결과가 비정상적으로 적습니다: ${unique.length}개`);
     await writeFile(OUTPUT, `${JSON.stringify({ updatedAt: new Date().toISOString(), source: SOURCE, events: unique }, null, 2)}\n`);
+    await unlink(DEBUG_OUTPUT).catch(() => {});
     console.log(`일정 ${unique.length}개 갱신 완료`);
   } catch (error) {
     console.error(`갱신 실패, 기존 데이터를 유지합니다: ${error.message}`);
+    await writeFile(DEBUG_OUTPUT, `${JSON.stringify({ ...diagnostics, error: error.message }, null, 2)}\n`);
     process.exitCode = 1;
   } finally {
     await browser.close();
