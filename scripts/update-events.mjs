@@ -69,44 +69,16 @@ async function collectEventUrls(page, month) {
 async function collectCalendarCards(page, month) {
   const result = await page.evaluate((games) => {
     const labels = games.flatMap((game) => game.names);
-    const results = [];
-    const gameNodes = [...document.querySelectorAll('body *')].filter((element) => {
-      const text = (element.textContent || '').trim();
-      return labels.includes(text);
-    });
-
-    for (const gameNode of gameNodes) {
-      let node = gameNode.parentElement;
-      let candidate = null;
-      for (let depth = 0; node && node !== document.body && depth < 9; depth += 1, node = node.parentElement) {
-        const text = (node.innerText || '').trim();
-        if (text.length > 15 && text.length < 1_000 && /\d{1,2}월\s*\d{1,2}일/.test(text) && /(픽업|업데이트|공식방송|공식 방송|이벤트|출시)/.test(text)) {
-          candidate = node;
-          break;
-        }
-      }
-      if (!candidate) continue;
-      const link = [...candidate.querySelectorAll('a[href]')].find((anchor) => anchor.href.includes('/events/'));
-      results.push({
-        gameName: (gameNode.textContent || '').trim(),
-        lines: (candidate.innerText || '').split('\n').map((line) => line.trim()).filter(Boolean),
-        url: link?.href || location.href
-      });
-    }
-    const interactiveSample = [...document.querySelectorAll('button, a, [role="button"]')]
+    const results = [...document.querySelectorAll('[data-hc-title][data-hc-sub][data-hc-meta]')]
+      .filter((element) => labels.includes(element.dataset.hcSub || ''))
       .map((element) => ({
-        tag: element.tagName,
-        text: (element.innerText || '').trim(),
-        href: element.getAttribute('href'),
-        ariaLabel: element.getAttribute('aria-label'),
-        title: element.getAttribute('title'),
-        className: typeof element.className === 'string' ? element.className : '',
-        dataset: { ...element.dataset },
-        style: element.getAttribute('style')
-      }))
-      .filter((element) => element.text.length > 8 && element.text.length < 250)
-      .slice(0, 60);
-    return { results, bodySample: (document.body.innerText || '').slice(0, 1_500), interactiveSample };
+        title: element.dataset.hcTitle,
+        gameName: element.dataset.hcSub,
+        meta: element.dataset.hcMeta,
+        id: element.dataset.hcMemoKey,
+        url: element.href || location.href
+      }));
+    return { results, bodySample: (document.body.innerText || '').slice(0, 1_500) };
   }, GAME_MAP);
 
   const [yearText, monthText] = month.split('-');
@@ -115,31 +87,22 @@ async function collectCalendarCards(page, month) {
 
   const cards = result.results.map((card) => {
     const game = detectGame(card.gameName);
-    const fullText = card.lines.join(' ');
-    const dates = [...fullText.matchAll(/(\d{1,2})월\s*(\d{1,2})일/g)].map((match) => ({ month: Number(match[1]), day: Number(match[2]) }));
+    const dates = [...card.meta.matchAll(/(\d{1,2})월\s*(\d{1,2})일/g)].map((match) => ({ month: Number(match[1]), day: Number(match[2]) }));
     if (!game || dates.length === 0) return null;
-    const metadata = /^(\d+|[월화수목금토일]|예정|진행중|종료|시작|일정 자세히 보기|일정 접기|총 \d+개|픽업|업데이트|공식방송|공식 방송|이벤트|오프라인 이벤트|출시)$/;
-    const title = card.lines
-      .filter((line) => !GAME_MAP.some((item) => item.names.includes(line)))
-      .filter((line) => !metadata.test(line))
-      .filter((line) => !/\d{1,2}월\s*\d{1,2}일/.test(line))
-      .filter((line) => !/^(예정|진행중|종료)\s*\d*$/.test(line))
-      .sort((a, b) => b.length - a.length)[0];
-    if (!title) return null;
     const start = calendarDate(year, viewMonth, dates[0].month, dates[0].day);
     const last = dates.at(-1);
     const end = dates.length > 1 ? calendarDate(year, viewMonth, last.month, last.day) : null;
     return {
-      id: hash(`${game}|${title}|${start}`),
+      id: card.id || hash(`${game}|${card.title}|${start}`),
       game,
-      title,
-      category: detectCategory(fullText),
+      title: card.title,
+      category: detectCategory(card.meta),
       start,
       end: end === start ? null : end,
       url: card.url
     };
   }).filter(Boolean);
-  return { cards, bodySample: result.bodySample, interactiveSample: result.interactiveSample };
+  return { cards, bodySample: result.bodySample };
 }
 
 async function readEvent(page, url) {
@@ -190,7 +153,7 @@ async function main() {
       found.forEach((url) => urls.add(url));
       const cardResult = await collectCalendarCards(page, month);
       calendarEvents.push(...cardResult.cards);
-      diagnostics.months.push({ month, detailUrls: found.length, cards: cardResult.cards.length, bodySample: cardResult.cards.length ? undefined : cardResult.bodySample, interactiveSample: cardResult.cards.length ? undefined : cardResult.interactiveSample });
+      diagnostics.months.push({ month, detailUrls: found.length, cards: cardResult.cards.length, bodySample: cardResult.cards.length ? undefined : cardResult.bodySample });
       await page.waitForTimeout(500);
     }
 
