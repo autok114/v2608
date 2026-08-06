@@ -1,60 +1,204 @@
 {
-  "updatedAt": "2026-08-06T06:00:00.000Z",
-  "source": "https://www.subgamecals.com/",
+  "updatedAt": "2026-08-06T08:32:16.018Z",
+  "source": "https://www.subgamecals.com",
   "events": [
     {
-      "id": "sample-hsr-1",
+      "id": "a039c62b-f620-45ab-9d04-8b69d75b84e4",
       "game": "hsr",
-      "title": "워프 「히메코·노바」 & 「스파키」 & 「에버나이트」 & 「단항·등황」",
-      "category": "banner",
-      "start": "2026-07-15 12:00",
-      "end": "2026-08-25 15:59",
-      "url": "https://www.subgamecals.com/calendar?month=2026-08"
+      "title": "4.3 버전「산 자의 망천에 잠겨」 업데이트",
+      "category": "update",
+      "start": "2026-06-01 00:00",
+      "end": "2026-07-15 00:00",
+      "url": "https://www.subgamecals.com/events?q=4.3%20%EB%B2%84%EC%A0%84%E3%80%8C%EC%82%B0%20%EC%9E%90%EC%9D%98%20%EB%A7%9D%EC%B2%9C%EC%97%90%20%EC%9E%A0%EA%B2%A8%E3%80%8D%20%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
     },
     {
-      "id": "sample-hsr-2",
-      "game": "hsr",
-      "title": "워프 「토오사카 린」 & 「길가메시」",
-      "category": "banner",
-      "start": "2026-07-24 12:00",
-      "end": "2026-08-25 15:59",
-      "url": "https://www.subgamecals.com/calendar?month=2026-08"
-    },
-    {
-      "id": "sample-wuwa-1",
+      "id": "debec9b6-496c-4ffc-a55e-ce5459b1ab39",
       "game": "wuwa",
-      "title": "튜닝 「수수」 & 「에이메스」",
-      "category": "banner",
-      "start": "2026-07-30 11:00",
-      "end": "2026-08-19 11:59",
-      "url": "https://www.subgamecals.com/calendar?month=2026-08"
+      "title": "3.4 버전 『선택하지 않은 꿈』업데이트",
+      "category": "update",
+      "start": "2026-06-08 00:00",
+      "end": "2026-07-10 00:00",
+      "url": "https://www.subgamecals.com/events?q=3.4%20%EB%B2%84%EC%A0%84%20%E3%80%8E%EC%84%A0%ED%83%9D%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EA%BF%88%E3%80%8F%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
     },
     {
-      "id": "sample-wuwa-2",
+      "id": "c3f85d9e-fa68-4fd9-b8f8-02df3e7bab9e",
       "game": "wuwa",
-      "title": "3.6 버전 프리뷰 특별 방송",
-      "category": "broadcast",
-      "start": "2026-08-07 20:00",
-      "end": null,
-      "url": "https://www.subgamecals.com/"
+      "title": "튜닝 「루시」&「레베카」",
+      "category": "banner",
+      "start": "2026-06-08 00:00",
+      "end": "2026-07-09 00:00",
+      "url": "https://www.subgamecals.com/events?q=%ED%8A%9C%EB%8B%9D%20%E3%80%8C%EB%A3%A8%EC%8B%9C%E3%80%8D%26%E3%80%8C%EB%A0%88%EB%B2%A0%EC%B9%B4%E3%80%8D"
     },
     {
-      "id": "sample-zzz-1",
+      "id": "fbd33ce3-18cf-4e67-973e-97583bc287ba",
+      "game": "wuwa",
+      "title": "튜닝 「루실라」",
+      "category": "banner",
+      "start": "2026-06-13 00:00",
+      "end": "2026-07-09 00:00",
+      "url": "https://www.subgamecals.com/events?q=%ED%8A%9C%EB%8B%9D%20%E3%80%8C%EB%A3%A8%EC%8B%A4%EB%9D%BC%E3%80%8D"
+    },
+    {
+      "id": "5a3ec0ae-203d-4033-acbe-a8fca1ca677d",
       "game": "zzz",
-      "title": "변조 「시그리드·드라주르」 & 「다이아린」 & 「유즈하」 & 「하루마사」",
-      "category": "banner",
-      "start": "2026-08-19 13:00",
-      "end": "2026-09-08 14:59",
-      "url": "https://www.subgamecals.com/"
+      "title": "3.0 버전 「꿈속을 헤매는 이의 고백」업데이트",
+      "category": "update",
+      "start": "2026-06-17 00:00",
+      "end": "2026-07-29 00:00",
+      "url": "https://www.subgamecals.com/events?q=3.0%20%EB%B2%84%EC%A0%84%20%E3%80%8C%EA%BF%88%EC%86%8D%EC%9D%84%20%ED%97%A4%EB%A7%A4%EB%8A%94%20%EC%9D%B4%EC%9D%98%20%EA%B3%A0%EB%B0%B1%E3%80%8D%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
     },
     {
-      "id": "sample-wuwa-3",
+      "id": "8ddc71bc-c984-4cd1-baae-dcfe53aa4b9f",
+      "game": "zzz",
+      "title": "변조「벨리나·에어기드」&「엽빛나」",
+      "category": "banner",
+      "start": "2026-06-17 00:00",
+      "end": "2026-07-08 00:00",
+      "url": "https://www.subgamecals.com/events?q=%EB%B3%80%EC%A1%B0%E3%80%8C%EB%B2%A8%EB%A6%AC%EB%82%98%C2%B7%EC%97%90%EC%96%B4%EA%B8%B0%EB%93%9C%E3%80%8D%26%E3%80%8C%EC%97%BD%EB%B9%9B%EB%82%98%E3%80%8D"
+    },
+    {
+      "id": "1c5e16e5-9abc-42c7-911b-072c14ba1377",
       "game": "wuwa",
-      "title": "명조 월드 투어 「To the New World」",
+      "title": "명조 월드 투어「To the New World」예매일",
       "category": "offline",
-      "start": "2026-08-29 18:00",
+      "start": "2026-07-02 00:00",
       "end": null,
-      "url": "https://www.subgamecals.com/"
+      "url": "https://www.subgamecals.com/events?q=%EB%AA%85%EC%A1%B0%20%EC%9B%94%EB%93%9C%20%ED%88%AC%EC%96%B4%E3%80%8CTo%20the%20New%20World%E3%80%8D%EC%98%88%EB%A7%A4%EC%9D%BC"
+    },
+    {
+      "id": "e251fa2a-5ac0-4cff-80fd-b2e31f33d436",
+      "game": "hsr",
+      "title": "4.4 버전「적막이 깃든 순간, 울리는 경적」 프리뷰 스페셜 프로그램",
+      "category": "broadcast",
+      "start": "2026-07-03 00:00",
+      "end": null,
+      "url": "https://www.subgamecals.com/events?q=4.4%20%EB%B2%84%EC%A0%84%E3%80%8C%EC%A0%81%EB%A7%89%EC%9D%B4%20%EA%B9%83%EB%93%A0%20%EC%88%9C%EA%B0%84%2C%20%EC%9A%B8%EB%A6%AC%EB%8A%94%20%EA%B2%BD%EC%A0%81%E3%80%8D%20%ED%94%84%EB%A6%AC%EB%B7%B0%20%EC%8A%A4%ED%8E%98%EC%85%9C%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8"
+    },
+    {
+      "id": "fa8403c0-b0db-49c2-a0e4-080dbeeaa36a",
+      "game": "zzz",
+      "title": "변조「노르마·할로웰」&「수나」",
+      "category": "banner",
+      "start": "2026-07-08 00:00",
+      "end": "2026-07-28 00:00",
+      "url": "https://www.subgamecals.com/events?q=%EB%B3%80%EC%A1%B0%E3%80%8C%EB%85%B8%EB%A5%B4%EB%A7%88%C2%B7%ED%95%A0%EB%A1%9C%EC%9B%B0%E3%80%8D%26%E3%80%8C%EC%88%98%EB%82%98%E3%80%8D"
+    },
+    {
+      "id": "7b24256f-bd1e-4ed2-b564-d41c44e528e7",
+      "game": "wuwa",
+      "title": "3.5 버전 『남겨진 울림, 검에 기대 꿈속에서 노래하리』업데이트",
+      "category": "update",
+      "start": "2026-07-10 00:00",
+      "end": "2026-08-21 00:00",
+      "url": "https://www.subgamecals.com/events?q=3.5%20%EB%B2%84%EC%A0%84%20%E3%80%8E%EB%82%A8%EA%B2%A8%EC%A7%84%20%EC%9A%B8%EB%A6%BC%2C%20%EA%B2%80%EC%97%90%20%EA%B8%B0%EB%8C%80%20%EA%BF%88%EC%86%8D%EC%97%90%EC%84%9C%20%EB%85%B8%EB%9E%98%ED%95%98%EB%A6%AC%E3%80%8F%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
+    },
+    {
+      "id": "cc5f39f7-1a7d-4317-b70e-e372b36297e0",
+      "game": "wuwa",
+      "title": "튜닝 「양양·현령」&「린네」&「루크·헤르센」",
+      "category": "banner",
+      "start": "2026-07-10 00:00",
+      "end": "2026-07-30 00:00",
+      "url": "https://www.subgamecals.com/events?q=%ED%8A%9C%EB%8B%9D%20%E3%80%8C%EC%96%91%EC%96%91%C2%B7%ED%98%84%EB%A0%B9%E3%80%8D%26%E3%80%8C%EB%A6%B0%EB%84%A4%E3%80%8D%26%E3%80%8C%EB%A3%A8%ED%81%AC%C2%B7%ED%97%A4%EB%A5%B4%EC%84%BC%E3%80%8D"
+    },
+    {
+      "id": "5094f97e-0d1b-4e18-82e1-1776cee11e68",
+      "game": "hsr",
+      "title": "4.4 버전「적막이 깃든 순간, 울리는 경적」 업데이트",
+      "category": "update",
+      "start": "2026-07-15 00:00",
+      "end": "2026-08-26 00:00",
+      "url": "https://www.subgamecals.com/events?q=4.4%20%EB%B2%84%EC%A0%84%E3%80%8C%EC%A0%81%EB%A7%89%EC%9D%B4%20%EA%B9%83%EB%93%A0%20%EC%88%9C%EA%B0%84%2C%20%EC%9A%B8%EB%A6%AC%EB%8A%94%20%EA%B2%BD%EC%A0%81%E3%80%8D%20%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
+    },
+    {
+      "id": "e70c5ce6-d1cb-4b37-9e71-1ca664dee6b5",
+      "game": "hsr",
+      "title": "워프「히메코·노바」&「스파키」&「에버나이트」&「단항·등황」",
+      "category": "banner",
+      "start": "2026-07-15 00:00",
+      "end": "2026-08-25 00:00",
+      "url": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%ED%9E%88%EB%A9%94%EC%BD%94%C2%B7%EB%85%B8%EB%B0%94%E3%80%8D%26%E3%80%8C%EC%8A%A4%ED%8C%8C%ED%82%A4%E3%80%8D%26%E3%80%8C%EC%97%90%EB%B2%84%EB%82%98%EC%9D%B4%ED%8A%B8%E3%80%8D%26%E3%80%8C%EB%8B%A8%ED%95%AD%C2%B7%EB%93%B1%ED%99%A9%E3%80%8D"
+    },
+    {
+      "id": "82b116bc-7ebb-4f66-b705-49657dfbbd11",
+      "game": "zzz",
+      "title": "3.1 버전 「기나긴 이별」특별 방송",
+      "category": "broadcast",
+      "start": "2026-07-17 00:00",
+      "end": null,
+      "url": "https://www.subgamecals.com/events?q=3.1%20%EB%B2%84%EC%A0%84%20%E3%80%8C%EA%B8%B0%EB%82%98%EA%B8%B4%20%EC%9D%B4%EB%B3%84%E3%80%8D%ED%8A%B9%EB%B3%84%20%EB%B0%A9%EC%86%A1"
+    },
+    {
+      "id": "70cbc448-9a23-4c2f-9e02-acb541f313b0",
+      "game": "hsr",
+      "title": "「Fate/stay night」 2차 콜라보「환조: 성배전쟁」 업데이트",
+      "category": "update",
+      "start": "2026-07-24 00:00",
+      "end": "2026-08-26 00:00",
+      "url": "https://www.subgamecals.com/events?q=%E3%80%8CFate%2Fstay%20night%E3%80%8D%202%EC%B0%A8%20%EC%BD%9C%EB%9D%BC%EB%B3%B4%E3%80%8C%ED%99%98%EC%A1%B0%3A%20%EC%84%B1%EB%B0%B0%EC%A0%84%EC%9F%81%E3%80%8D%20%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
+    },
+    {
+      "id": "d89ee445-6325-40c0-a72c-8a3b08467835",
+      "game": "hsr",
+      "title": "워프「토오사카 린」&「길가메시」",
+      "category": "banner",
+      "start": "2026-07-24 00:00",
+      "end": "2026-08-25 00:00",
+      "url": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%ED%86%A0%EC%98%A4%EC%82%AC%EC%B9%B4%20%EB%A6%B0%E3%80%8D%26%E3%80%8C%EA%B8%B8%EA%B0%80%EB%A9%94%EC%8B%9C%E3%80%8D"
+    },
+    {
+      "id": "18c7abd9-d057-4c23-a88e-80cc66f04cee",
+      "game": "zzz",
+      "title": "3.1 버전 「기나긴 이별」업데이트",
+      "category": "update",
+      "start": "2026-07-29 00:00",
+      "end": "2026-09-09 00:00",
+      "url": "https://www.subgamecals.com/events?q=3.1%20%EB%B2%84%EC%A0%84%20%E3%80%8C%EA%B8%B0%EB%82%98%EA%B8%B4%20%EC%9D%B4%EB%B3%84%E3%80%8D%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
+    },
+    {
+      "id": "62865387-b707-410d-b3e2-26c98008737a",
+      "game": "zzz",
+      "title": "변조「레미엘 댄」&「아리아」",
+      "category": "banner",
+      "start": "2026-07-29 00:00",
+      "end": "2026-09-08 00:00",
+      "url": "https://www.subgamecals.com/events?q=%EB%B3%80%EC%A1%B0%E3%80%8C%EB%A0%88%EB%AF%B8%EC%97%98%20%EB%8C%84%E3%80%8D%26%E3%80%8C%EC%95%84%EB%A6%AC%EC%95%84%E3%80%8D"
+    },
+    {
+      "id": "1ba25ffb-fee7-4aaf-9943-d1ffd4ea9fec",
+      "game": "wuwa",
+      "title": "튜닝 「수수」&「에이메스」",
+      "category": "banner",
+      "start": "2026-07-30 00:00",
+      "end": "2026-08-19 00:00",
+      "url": "https://www.subgamecals.com/events?q=%ED%8A%9C%EB%8B%9D%20%E3%80%8C%EC%88%98%EC%88%98%E3%80%8D%26%E3%80%8C%EC%97%90%EC%9D%B4%EB%A9%94%EC%8A%A4%E3%80%8D"
+    },
+    {
+      "id": "5f166ca1-2710-4669-bbb7-7ea9d02d31e9",
+      "game": "wuwa",
+      "title": "3.6 버전 『???』프리뷰 특별 방송",
+      "category": "broadcast",
+      "start": "2026-08-07 00:00",
+      "end": null,
+      "url": "https://www.subgamecals.com/events?q=3.6%20%EB%B2%84%EC%A0%84%20%E3%80%8E%3F%3F%3F%E3%80%8F%ED%94%84%EB%A6%AC%EB%B7%B0%20%ED%8A%B9%EB%B3%84%20%EB%B0%A9%EC%86%A1"
+    },
+    {
+      "id": "c4e4ad0f-02ac-4fce-89e3-04f4675d7247",
+      "game": "zzz",
+      "title": "변조「시그리드·드라주르」&「다이아린」&「유즈하」&「하루마사」",
+      "category": "banner",
+      "start": "2026-08-19 00:00",
+      "end": "2026-09-08 00:00",
+      "url": "https://www.subgamecals.com/events?q=%EB%B3%80%EC%A1%B0%E3%80%8C%EC%8B%9C%EA%B7%B8%EB%A6%AC%EB%93%9C%C2%B7%EB%93%9C%EB%9D%BC%EC%A3%BC%EB%A5%B4%E3%80%8D%26%E3%80%8C%EB%8B%A4%EC%9D%B4%EC%95%84%EB%A6%B0%E3%80%8D%26%E3%80%8C%EC%9C%A0%EC%A6%88%ED%95%98%E3%80%8D%26%E3%80%8C%ED%95%98%EB%A3%A8%EB%A7%88%EC%82%AC%E3%80%8D"
+    },
+    {
+      "id": "a99c178e-d99c-4862-b27b-e1c92388b562",
+      "game": "wuwa",
+      "title": "명조 월드 투어「To the New World」",
+      "category": "offline",
+      "start": "2026-08-29 00:00",
+      "end": null,
+      "url": "https://www.subgamecals.com/events?q=%EB%AA%85%EC%A1%B0%20%EC%9B%94%EB%93%9C%20%ED%88%AC%EC%96%B4%E3%80%8CTo%20the%20New%20World%E3%80%8D"
     }
   ]
 }
