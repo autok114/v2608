@@ -50,28 +50,20 @@ function calendarDate(year, viewMonth, month, day) {
 }
 
 async function collectEventUrls(page, month) {
-  await page.goto(`${SOURCE}/calendar?month=${month}&ver=${Date.now()}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+  await page.goto(`${SOURCE}/calendar/bar?month=${month}&ver=${Date.now()}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
   await page.waitForFunction(() => {
     const text = document.body.innerText || '';
     return text.length > 300 && !text.includes('이벤트를 불러오는 중');
   }, null, { timeout: 15_000 }).catch(() => {});
   await page.waitForTimeout(800);
 
-  return page.evaluate((gameNames) => {
-    const names = gameNames.flat();
+  return page.evaluate(() => {
     const results = new Set();
     document.querySelectorAll('a[href*="/events/"]').forEach((anchor) => {
-      let node = anchor;
-      for (let depth = 0; node && depth < 8; depth += 1, node = node.parentElement) {
-        const text = node.textContent || '';
-        if (names.some((name) => text.includes(name))) {
-          results.add(new URL(anchor.getAttribute('href'), location.origin).href);
-          break;
-        }
-      }
+      results.add(new URL(anchor.getAttribute('href'), location.origin).href);
     });
     return [...results];
-  }, GAME_MAP.map((game) => game.names));
+  });
 }
 
 async function collectCalendarCards(page, month) {
@@ -179,7 +171,7 @@ async function main() {
   try {
     const urls = new Set();
     const calendarEvents = [];
-    for (let offset = -2; offset <= 2; offset += 1) {
+    for (let offset = -1; offset <= 1; offset += 1) {
       const month = monthOffset(now, offset);
       const found = await collectEventUrls(page, month);
       found.forEach((url) => urls.add(url));
