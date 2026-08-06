@@ -36,8 +36,7 @@ function visibleEventsFor(date) {
   return state.events.filter((event) => {
     if (!state.enabledGames.has(event.game)) return false;
     const start = event.start.slice(0, 10);
-    const end = (event.end || event.start).slice(0, 10);
-    return key >= start && key <= end;
+    return key === start;
   });
 }
 
