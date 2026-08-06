@@ -2,11 +2,59 @@
   "updatedAt": "2026-08-06T06:00:00.000Z",
   "source": "https://www.subgamecals.com/",
   "events": [
-    {"id":"sample-hsr-1","game":"hsr","title":"워프 「히메코·노바」 & 「스파키」 & 「에버나이트」 & 「단항·등황」","category":"banner","start":"2026-07-15 12:00","end":"2026-08-25 15:59","url":"https://www.subgamecals.com/calendar?month=2026-08"},
-    {"id":"sample-hsr-2","game":"hsr","title":"워프 「토오사카 린」 & 「길가메시」","category":"banner","start":"2026-07-24 12:00","end":"2026-08-25 15:59","url":"https://www.subgamecals.com/calendar?month=2026-08"},
-    {"id":"sample-wuwa-1","game":"wuwa","title":"튜닝 「수수」 & 「에이메스」","category":"banner","start":"2026-07-30 11:00","end":"2026-08-19 11:59","url":"https://www.subgamecals.com/calendar?month=2026-08"},
-    {"id":"sample-wuwa-2","game":"wuwa","title":"3.6 버전 프리뷰 특별 방송","category":"broadcast","start":"2026-08-07 20:00","end":null,"url":"https://www.subgamecals.com/"},
-    {"id":"sample-zzz-1","game":"zzz","title":"변조 「시그리드·드라주르」 & 「다이아린」 & 「유즈하」 & 「하루마사」","category":"banner","start":"2026-08-19 13:00","end":"2026-09-08 14:59","url":"https://www.subgamecals.com/"},
-    {"id":"sample-wuwa-3","game":"wuwa","title":"명조 월드 투어 「To the New World」","category":"offline","start":"2026-08-29 18:00","end":null,"url":"https://www.subgamecals.com/"}
+    {
+      "id": "sample-hsr-1",
+      "game": "hsr",
+      "title": "워프 「히메코·노바」 & 「스파키」 & 「에버나이트」 & 「단항·등황」",
+      "category": "banner",
+      "start": "2026-07-15 12:00",
+      "end": "2026-08-25 15:59",
+      "url": "https://www.subgamecals.com/calendar?month=2026-08"
+    },
+    {
+      "id": "sample-hsr-2",
+      "game": "hsr",
+      "title": "워프 「토오사카 린」 & 「길가메시」",
+      "category": "banner",
+      "start": "2026-07-24 12:00",
+      "end": "2026-08-25 15:59",
+      "url": "https://www.subgamecals.com/calendar?month=2026-08"
+    },
+    {
+      "id": "sample-wuwa-1",
+      "game": "wuwa",
+      "title": "튜닝 「수수」 & 「에이메스」",
+      "category": "banner",
+      "start": "2026-07-30 11:00",
+      "end": "2026-08-19 11:59",
+      "url": "https://www.subgamecals.com/calendar?month=2026-08"
+    },
+    {
+      "id": "sample-wuwa-2",
+      "game": "wuwa",
+      "title": "3.6 버전 프리뷰 특별 방송",
+      "category": "broadcast",
+      "start": "2026-08-07 20:00",
+      "end": null,
+      "url": "https://www.subgamecals.com/"
+    },
+    {
+      "id": "sample-zzz-1",
+      "game": "zzz",
+      "title": "변조 「시그리드·드라주르」 & 「다이아린」 & 「유즈하」 & 「하루마사」",
+      "category": "banner",
+      "start": "2026-08-19 13:00",
+      "end": "2026-09-08 14:59",
+      "url": "https://www.subgamecals.com/"
+    },
+    {
+      "id": "sample-wuwa-3",
+      "game": "wuwa",
+      "title": "명조 월드 투어 「To the New World」",
+      "category": "offline",
+      "start": "2026-08-29 18:00",
+      "end": null,
+      "url": "https://www.subgamecals.com/"
+    }
   ]
 }
