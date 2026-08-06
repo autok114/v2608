@@ -16,6 +16,8 @@
 
 * { box-sizing: border-box; }
 
+html { background-color: var(--bg); }
+
 body {
   margin: 0;
   min-width: 320px;
