@@ -51,7 +51,11 @@ function calendarDate(year, viewMonth, month, day) {
 
 async function collectEventUrls(page, month) {
   await page.goto(`${SOURCE}/calendar?month=${month}&ver=${Date.now()}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
-  await page.waitForTimeout(1_200);
+  await page.waitForFunction(() => {
+    const text = document.body.innerText || '';
+    return text.length > 300 && !text.includes('이벤트를 불러오는 중');
+  }, null, { timeout: 15_000 }).catch(() => {});
+  await page.waitForTimeout(800);
 
   return page.evaluate((gameNames) => {
     const names = gameNames.flat();
@@ -71,15 +75,12 @@ async function collectEventUrls(page, month) {
 }
 
 async function collectCalendarCards(page, month) {
-  await page.goto(`${SOURCE}/calendar?month=${month}&ver=${Date.now()}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
-  await page.waitForTimeout(1_200);
-
-  const cards = await page.evaluate((games) => {
+  const result = await page.evaluate((games) => {
     const labels = games.flatMap((game) => game.names);
     const results = [];
     const gameNodes = [...document.querySelectorAll('body *')].filter((element) => {
       const text = (element.textContent || '').trim();
-      return labels.includes(text) && element.children.length === 0;
+      return labels.includes(text);
     });
 
     for (const gameNode of gameNodes) {
@@ -100,14 +101,14 @@ async function collectCalendarCards(page, month) {
         url: link?.href || location.href
       });
     }
-    return results;
+    return { results, bodySample: (document.body.innerText || '').slice(0, 1_500) };
   }, GAME_MAP);
 
   const [yearText, monthText] = month.split('-');
   const year = Number(yearText);
   const viewMonth = Number(monthText);
 
-  return cards.map((card) => {
+  const cards = result.results.map((card) => {
     const game = detectGame(card.gameName);
     const fullText = card.lines.join(' ');
     const dates = [...fullText.matchAll(/(\d{1,2})월\s*(\d{1,2})일/g)].map((match) => ({ month: Number(match[1]), day: Number(match[2]) }));
@@ -133,6 +134,7 @@ async function collectCalendarCards(page, month) {
       url: card.url
     };
   }).filter(Boolean);
+  return { cards, bodySample: result.bodySample };
 }
 
 async function readEvent(page, url) {
@@ -177,13 +179,13 @@ async function main() {
   try {
     const urls = new Set();
     const calendarEvents = [];
-    for (let offset = -2; offset <= 6; offset += 1) {
+    for (let offset = -2; offset <= 2; offset += 1) {
       const month = monthOffset(now, offset);
       const found = await collectEventUrls(page, month);
       found.forEach((url) => urls.add(url));
-      const cards = await collectCalendarCards(page, month);
-      calendarEvents.push(...cards);
-      diagnostics.months.push({ month, detailUrls: found.length, cards: cards.length });
+      const cardResult = await collectCalendarCards(page, month);
+      calendarEvents.push(...cardResult.cards);
+      diagnostics.months.push({ month, detailUrls: found.length, cards: cardResult.cards.length, bodySample: cardResult.cards.length ? undefined : cardResult.bodySample });
       await page.waitForTimeout(500);
     }
 
