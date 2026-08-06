@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light;
+  color-scheme: only light;
   --bg: #f3f6fb;
   --surface: rgba(255, 255, 255, 0.9);
   --line: #e6ebf2;
