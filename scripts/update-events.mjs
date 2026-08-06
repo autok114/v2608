@@ -93,7 +93,20 @@ async function collectCalendarCards(page, month) {
         url: link?.href || location.href
       });
     }
-    return { results, bodySample: (document.body.innerText || '').slice(0, 1_500) };
+    const interactiveSample = [...document.querySelectorAll('button, a, [role="button"]')]
+      .map((element) => ({
+        tag: element.tagName,
+        text: (element.innerText || '').trim(),
+        href: element.getAttribute('href'),
+        ariaLabel: element.getAttribute('aria-label'),
+        title: element.getAttribute('title'),
+        className: typeof element.className === 'string' ? element.className : '',
+        dataset: { ...element.dataset },
+        style: element.getAttribute('style')
+      }))
+      .filter((element) => element.text.length > 8 && element.text.length < 250)
+      .slice(0, 60);
+    return { results, bodySample: (document.body.innerText || '').slice(0, 1_500), interactiveSample };
   }, GAME_MAP);
 
   const [yearText, monthText] = month.split('-');
@@ -126,7 +139,7 @@ async function collectCalendarCards(page, month) {
       url: card.url
     };
   }).filter(Boolean);
-  return { cards, bodySample: result.bodySample };
+  return { cards, bodySample: result.bodySample, interactiveSample: result.interactiveSample };
 }
 
 async function readEvent(page, url) {
@@ -177,7 +190,7 @@ async function main() {
       found.forEach((url) => urls.add(url));
       const cardResult = await collectCalendarCards(page, month);
       calendarEvents.push(...cardResult.cards);
-      diagnostics.months.push({ month, detailUrls: found.length, cards: cardResult.cards.length, bodySample: cardResult.cards.length ? undefined : cardResult.bodySample });
+      diagnostics.months.push({ month, detailUrls: found.length, cards: cardResult.cards.length, bodySample: cardResult.cards.length ? undefined : cardResult.bodySample, interactiveSample: cardResult.cards.length ? undefined : cardResult.interactiveSample });
       await page.waitForTimeout(500);
     }
 
