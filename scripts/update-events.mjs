@@ -1,5 +1,5 @@
 import { chromium } from 'playwright';
-import { readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
 const SOURCE = 'https://www.subgamecals.com';
@@ -41,6 +41,13 @@ function normalizeDate(value) {
   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')} ${hour.padStart(2, '0')}:${minute}`;
 }
 
+function calendarDate(year, viewMonth, month, day) {
+  let resolvedYear = year;
+  if (month - viewMonth > 6) resolvedYear -= 1;
+  if (viewMonth - month > 6) resolvedYear += 1;
+  return `${resolvedYear}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} 00:00`;
+}
+
 async function collectEventUrls(page, month) {
   await page.goto(`${SOURCE}/calendar?month=${month}&ver=${Date.now()}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
   await page.waitForTimeout(1_200);
@@ -60,6 +67,71 @@ async function collectEventUrls(page, month) {
     });
     return [...results];
   }, GAME_MAP.map((game) => game.names));
+}
+
+async function collectCalendarCards(page, month) {
+  await page.goto(`${SOURCE}/calendar?month=${month}&ver=${Date.now()}`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+  await page.waitForTimeout(1_200);
+
+  const cards = await page.evaluate((games) => {
+    const labels = games.flatMap((game) => game.names);
+    const results = [];
+    const gameNodes = [...document.querySelectorAll('body *')].filter((element) => {
+      const text = (element.textContent || '').trim();
+      return labels.includes(text) && element.children.length === 0;
+    });
+
+    for (const gameNode of gameNodes) {
+      let node = gameNode.parentElement;
+      let candidate = null;
+      for (let depth = 0; node && node !== document.body && depth < 9; depth += 1, node = node.parentElement) {
+        const text = (node.innerText || '').trim();
+        if (text.length > 15 && text.length < 1_000 && /\d{1,2}월\s*\d{1,2}일/.test(text) && /(픽업|업데이트|공식방송|공식 방송|이벤트|출시)/.test(text)) {
+          candidate = node;
+          break;
+        }
+      }
+      if (!candidate) continue;
+      const link = [...candidate.querySelectorAll('a[href]')].find((anchor) => anchor.href.includes('/events/'));
+      results.push({
+        gameName: (gameNode.textContent || '').trim(),
+        lines: (candidate.innerText || '').split('\n').map((line) => line.trim()).filter(Boolean),
+        url: link?.href || location.href
+      });
+    }
+    return results;
+  }, GAME_MAP);
+
+  const [yearText, monthText] = month.split('-');
+  const year = Number(yearText);
+  const viewMonth = Number(monthText);
+
+  return cards.map((card) => {
+    const game = detectGame(card.gameName);
+    const fullText = card.lines.join(' ');
+    const dates = [...fullText.matchAll(/(\d{1,2})월\s*(\d{1,2})일/g)].map((match) => ({ month: Number(match[1]), day: Number(match[2]) }));
+    if (!game || dates.length === 0) return null;
+    const metadata = /^(\d+|[월화수목금토일]|예정|진행중|종료|시작|일정 자세히 보기|일정 접기|총 \d+개|픽업|업데이트|공식방송|공식 방송|이벤트|오프라인 이벤트|출시)$/;
+    const title = card.lines
+      .filter((line) => !GAME_MAP.some((item) => item.names.includes(line)))
+      .filter((line) => !metadata.test(line))
+      .filter((line) => !/\d{1,2}월\s*\d{1,2}일/.test(line))
+      .filter((line) => !/^(예정|진행중|종료)\s*\d*$/.test(line))
+      .sort((a, b) => b.length - a.length)[0];
+    if (!title) return null;
+    const start = calendarDate(year, viewMonth, dates[0].month, dates[0].day);
+    const last = dates.at(-1);
+    const end = dates.length > 1 ? calendarDate(year, viewMonth, last.month, last.day) : null;
+    return {
+      id: hash(`${game}|${title}|${start}`),
+      game,
+      title,
+      category: detectCategory(fullText),
+      start,
+      end: end === start ? null : end,
+      url: card.url
+    };
+  }).filter(Boolean);
 }
 
 async function readEvent(page, url) {
@@ -96,21 +168,22 @@ async function readEvent(page, url) {
 }
 
 async function main() {
-  const previous = JSON.parse(await readFile(OUTPUT, 'utf8'));
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ locale: 'ko-KR', timezoneId: 'Asia/Seoul' });
   const now = new Date();
 
   try {
     const urls = new Set();
+    const calendarEvents = [];
     for (let offset = -2; offset <= 6; offset += 1) {
       const month = monthOffset(now, offset);
       const found = await collectEventUrls(page, month);
       found.forEach((url) => urls.add(url));
+      if (found.length === 0) calendarEvents.push(...await collectCalendarCards(page, month));
       await page.waitForTimeout(500);
     }
 
-    const events = [];
+    const events = [...calendarEvents];
     for (const url of urls) {
       try {
         const event = await readEvent(page, url);
@@ -121,7 +194,7 @@ async function main() {
       await page.waitForTimeout(350);
     }
 
-    const unique = [...new Map(events.map((event) => [event.id, event])).values()]
+    const unique = [...new Map(events.map((event) => [`${event.game}|${event.title}|${event.start.slice(0, 10)}`, event])).values()]
       .sort((a, b) => a.start.localeCompare(b.start) || a.title.localeCompare(b.title, 'ko'));
 
     if (unique.length < 3) throw new Error(`수집 결과가 비정상적으로 적습니다: ${unique.length}개`);
@@ -129,7 +202,6 @@ async function main() {
     console.log(`일정 ${unique.length}개 갱신 완료`);
   } catch (error) {
     console.error(`갱신 실패, 기존 데이터를 유지합니다: ${error.message}`);
-    await writeFile(OUTPUT, `${JSON.stringify(previous, null, 2)}\n`);
     process.exitCode = 1;
   } finally {
     await browser.close();
