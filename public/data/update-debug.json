@@ -1,0 +1,5 @@
+{
+  "ranAt": "2026-08-13T21:06:28.747Z",
+  "months": [],
+  "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.subgamecals.com/calendar/bar?month=2026-07&ver=1786655188748\nCall log:\n  - navigating to \"https://www.subgamecals.com/calendar/bar?month=2026-07&ver=1786655188748\", waiting until \"domcontentloaded\"\n"
+}
