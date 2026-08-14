@@ -1,5 +1,5 @@
 import { chromium } from 'playwright';
-import { unlink, writeFile } from 'node:fs/promises';
+import { readFile, unlink, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
 const SOURCE = 'https://www.subgamecals.com';
@@ -47,6 +47,14 @@ function calendarDate(year, viewMonth, month, day) {
   if (month - viewMonth > 6) resolvedYear -= 1;
   if (viewMonth - month > 6) resolvedYear += 1;
   return `${resolvedYear}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} 00:00`;
+}
+
+function eventKey(event) {
+  return `${event.game}|${event.title}|${event.start.slice(0, 10)}`;
+}
+
+function hasExactTime(value) {
+  return Boolean(value && !value.endsWith('00:00'));
 }
 
 async function loadCalendarPage(page, month) {
@@ -97,37 +105,44 @@ async function collectCalendarCards(page, month) {
   return { cards, bodySample: result.bodySample };
 }
 
-async function readEvent(page, url) {
-  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
-  await page.waitForTimeout(300);
-  const raw = await page.evaluate(() => {
-    const bodyText = document.body.innerText.replace(/\u00a0/g, ' ');
-    const heading = document.querySelector('h1')?.textContent?.trim() || document.title.split(' - ')[0].trim();
-    const original = [...document.querySelectorAll('a')].find((link) => /원문/.test(link.textContent || ''))?.href || location.href;
-    const times = [...bodyText.matchAll(/20\d{2}[-./년]\s*\d{1,2}[-./월]\s*\d{1,2}(?:일)?(?:\s+\d{1,2}:\d{2})?/g)].map((match) => match[0]);
-    return { bodyText, heading, original, times, detailUrl: location.href };
-  });
+async function readEvent(page, calendarEvent) {
+  await page.goto(calendarEvent.url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+  await page.waitForTimeout(500);
 
-  const game = detectGame(raw.bodyText);
-  if (!game || !raw.heading) return null;
-  const startIndex = raw.bodyText.indexOf('시작');
-  const endIndex = raw.bodyText.indexOf('종료', startIndex + 1);
-  const startSection = startIndex >= 0 ? raw.bodyText.slice(startIndex, endIndex > startIndex ? endIndex : startIndex + 100) : '';
-  const endSection = endIndex >= 0 ? raw.bodyText.slice(endIndex, endIndex + 100) : '';
-  const start = normalizeDate(startSection) || normalizeDate(raw.times.at(-2)) || normalizeDate(raw.times[0]);
-  const end = normalizeDate(endSection) || (raw.times.length > 1 ? normalizeDate(raw.times.at(-1)) : null);
+  let raw = await readResultCard(page, calendarEvent.title);
+  if (!raw) {
+    const status = page.locator('select[aria-label="상태"]');
+    if (await status.count()) {
+      await status.selectOption({ label: '전체' });
+      await page.waitForTimeout(800);
+      raw = await readResultCard(page, calendarEvent.title);
+    }
+  }
+
+  if (!raw) return null;
+  const labelledTimes = [...raw.text.matchAll(/(20\d{2}[-./년]\s*\d{1,2}[-./월]\s*\d{1,2}(?:일)?\s+\d{1,2}:\d{2})[^\n]*(시작|종료)/g)];
+  const start = normalizeDate(labelledTimes.find((match) => match[2] === '시작')?.[1]);
+  const end = normalizeDate(labelledTimes.find((match) => match[2] === '종료')?.[1]);
   if (!start) return null;
 
   return {
-    id: url.match(/\/events\/(?:e-)?([^/?#]+)/)?.[1] || hash(`${game}|${raw.heading}|${start}`),
-    game,
-    title: raw.heading,
-    category: detectCategory(`${raw.heading}\n${raw.bodyText}`),
+    ...calendarEvent,
     start,
-    end: end === start ? null : end,
-    url: raw.original || raw.detailUrl,
-    detailUrl: raw.detailUrl
+    end: end && end !== start ? end : calendarEvent.end,
+    url: raw.original || calendarEvent.url,
+    detailUrl: calendarEvent.url
   };
+}
+
+async function readResultCard(page, title) {
+  return page.evaluate((targetTitle) => {
+    const cards = [...document.querySelectorAll('[role="button"][title="이벤트 상세 보기"]')];
+    const card = cards.find((element) => element.innerText.trim().startsWith(targetTitle));
+    if (!card) return null;
+    const original = [...card.querySelectorAll('a')]
+      .find((link) => /원문 열기/.test(link.getAttribute('aria-label') || '') || link.textContent?.trim() === targetTitle)?.href;
+    return { text: card.innerText.replace(/\u00a0/g, ' '), original };
+  }, title);
 }
 
 async function main() {
@@ -137,33 +152,38 @@ async function main() {
   const diagnostics = { ranAt: new Date().toISOString(), months: [] };
 
   try {
-    const urls = new Set();
+    const previousData = JSON.parse(await readFile(OUTPUT, 'utf8').catch(() => '{"events":[]}'));
+    const previousByKey = new Map((previousData.events || []).map((event) => [eventKey(event), event]));
+    const urls = new Map();
     const calendarEvents = [];
     for (let offset = -1; offset <= 1; offset += 1) {
       const month = monthOffset(now, offset);
       await loadCalendarPage(page, month);
       const cardResult = await collectCalendarCards(page, month);
       calendarEvents.push(...cardResult.cards);
-      const targetUrls = cardResult.cards
-        .map((card) => card.url)
-        .filter((url) => url.includes('/events/'));
-      targetUrls.forEach((url) => urls.add(url));
-      diagnostics.months.push({ month, detailUrls: targetUrls.length, cards: cardResult.cards.length, bodySample: cardResult.cards.length ? undefined : cardResult.bodySample });
+      const targetEvents = cardResult.cards.filter((card) => card.url.includes('/events'));
+      targetEvents.forEach((event) => urls.set(eventKey(event), event));
+      diagnostics.months.push({ month, detailUrls: targetEvents.length, cards: cardResult.cards.length, bodySample: cardResult.cards.length ? undefined : cardResult.bodySample });
       await page.waitForTimeout(500);
     }
 
-    const events = [...calendarEvents];
-    for (const url of urls) {
+    const events = calendarEvents.map((event) => {
+      const previous = previousByKey.get(eventKey(event));
+      return previous && hasExactTime(previous.start)
+        ? { ...event, start: previous.start, end: previous.end, url: previous.url || event.url, detailUrl: previous.detailUrl }
+        : event;
+    });
+    for (const calendarEvent of urls.values()) {
       try {
-        const event = await readEvent(page, url);
+        const event = await readEvent(page, calendarEvent);
         if (event) events.push(event);
       } catch (error) {
-        console.warn(`일정 상세 수집 실패: ${url} (${error.message})`);
+        console.warn(`일정 상세 수집 실패: ${calendarEvent.url} (${error.message})`);
       }
       await page.waitForTimeout(350);
     }
 
-    const unique = [...new Map(events.map((event) => [`${event.game}|${event.title}|${event.start.slice(0, 10)}`, event])).values()]
+    const unique = [...new Map(events.map((event) => [eventKey(event), event])).values()]
       .sort((a, b) => a.start.localeCompare(b.start) || a.title.localeCompare(b.title, 'ko'));
 
     if (unique.length < 3) throw new Error(`수집 결과가 비정상적으로 적습니다: ${unique.length}개`);
