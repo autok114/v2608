@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-14T11:28:51.866Z",
+  "updatedAt": "2026-08-14T20:48:46.899Z",
   "source": "https://www.subgamecals.com",
   "events": [
     {
@@ -253,6 +253,26 @@
       "detailUrl": "https://www.subgamecals.com/events?q=%EC%BD%9C%EB%9D%BC%EB%B3%B4%E3%80%8C%EB%AA%85%EC%A1%B0%20X%20%EB%8F%84%EB%AF%B8%EB%85%B8%ED%94%BC%EC%9E%90%E3%80%8D"
     },
     {
+      "id": "67cf3593-6cf3-4f5c-b9c1-272a48d5822e",
+      "game": "hsr",
+      "title": "4.5 버전「천성에 던진 승부수」 업데이트",
+      "category": "update",
+      "start": "2026-08-26 12:00",
+      "end": "2026-09-28 06:59",
+      "url": "https://www.subgamecals.com/events?q=4.5%20%EB%B2%84%EC%A0%84%E3%80%8C%EC%B2%9C%EC%84%B1%EC%97%90%20%EB%8D%98%EC%A7%84%20%EC%8A%B9%EB%B6%80%EC%88%98%E3%80%8D%20%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8",
+      "detailUrl": "https://www.subgamecals.com/events?q=4.5%20%EB%B2%84%EC%A0%84%E3%80%8C%EC%B2%9C%EC%84%B1%EC%97%90%20%EB%8D%98%EC%A7%84%20%EC%8A%B9%EB%B6%80%EC%88%98%E3%80%8D%20%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
+    },
+    {
+      "id": "7caba194-3b49-4ede-92b4-d8a9f821cc56",
+      "game": "hsr",
+      "title": "워프「로빈·서머레토」&「히아킨」",
+      "category": "banner",
+      "start": "2026-08-26 12:00",
+      "end": "2026-09-16 12:59",
+      "url": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EB%A1%9C%EB%B9%88%C2%B7%EC%84%9C%EB%A8%B8%EB%A0%88%ED%86%A0%E3%80%8D%26%E3%80%8C%ED%9E%88%EC%95%84%ED%82%A8%E3%80%8D",
+      "detailUrl": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EB%A1%9C%EB%B9%88%C2%B7%EC%84%9C%EB%A8%B8%EB%A0%88%ED%86%A0%E3%80%8D%26%E3%80%8C%ED%9E%88%EC%95%84%ED%82%A8%E3%80%8D"
+    },
+    {
       "id": "a99c178e-d99c-4862-b27b-e1c92388b562",
       "game": "wuwa",
       "title": "명조 월드 투어「To the New World」",
@@ -271,6 +291,16 @@
       "end": "2026-09-30 12:59",
       "url": "https://www.subgamecals.com/events?q=%ED%8A%9C%EB%8B%9D%20%E3%80%8C%EA%B2%BD%EC%97%B0%E3%80%8D%26%E3%80%8C%ED%9E%88%EC%9C%A0%ED%82%A4%E3%80%8D%26%E3%80%8C%EB%AA%A8%EB%8B%88%EC%97%90%E3%80%8D",
       "detailUrl": "https://www.subgamecals.com/events?q=%ED%8A%9C%EB%8B%9D%20%E3%80%8C%EA%B2%BD%EC%97%B0%E3%80%8D%26%E3%80%8C%ED%9E%88%EC%9C%A0%ED%82%A4%E3%80%8D%26%E3%80%8C%EB%AA%A8%EB%8B%88%EC%97%90%E3%80%8D"
+    },
+    {
+      "id": "3eb44371-29df-4a2b-963a-878e8a7da08f",
+      "game": "hsr",
+      "title": "워프「어벤츄린·웨이브」&「애쉬베일」",
+      "category": "banner",
+      "start": "2026-09-16 13:00",
+      "end": "2026-09-28 06:59",
+      "url": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EC%96%B4%EB%B2%A4%EC%B8%84%EB%A6%B0%C2%B7%EC%9B%A8%EC%9D%B4%EB%B8%8C%E3%80%8D%26%E3%80%8C%EC%95%A0%EC%89%AC%EB%B2%A0%EC%9D%BC%E3%80%8D",
+      "detailUrl": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EC%96%B4%EB%B2%A4%EC%B8%84%EB%A6%B0%C2%B7%EC%9B%A8%EC%9D%B4%EB%B8%8C%E3%80%8D%26%E3%80%8C%EC%95%A0%EC%89%AC%EB%B2%A0%EC%9D%BC%E3%80%8D"
     }
   ]
 }
