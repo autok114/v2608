@@ -10,7 +10,6 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "playwright": "^1.54.2",
     "vite": "^7.1.1"
   }
 }
