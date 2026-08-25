@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-24T20:51:04.314Z",
+  "updatedAt": "2026-08-25T20:49:08.067Z",
   "source": "https://www.subgamecals.com",
   "events": [
     {
@@ -268,9 +268,19 @@
       "title": "워프「로빈·서머레토」&「히아킨」",
       "category": "banner",
       "start": "2026-08-26 12:00",
-      "end": "2026-09-16 12:59",
-      "url": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EB%A1%9C%EB%B9%88%C2%B7%EC%84%9C%EB%A8%B8%EB%A0%88%ED%86%A0%E3%80%8D%26%E3%80%8C%ED%9E%88%EC%95%84%ED%82%A8%E3%80%8D",
+      "end": "2026-09-12 12:59",
+      "url": "https://www.hoyolab.com/article/46439490",
       "detailUrl": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EB%A1%9C%EB%B9%88%C2%B7%EC%84%9C%EB%A8%B8%EB%A0%88%ED%86%A0%E3%80%8D%26%E3%80%8C%ED%9E%88%EC%95%84%ED%82%A8%E3%80%8D"
+    },
+    {
+      "id": "6d80454a-7dc8-46e2-b060-7822bf9e6a11",
+      "game": "zzz",
+      "title": "3.2 버전 「그녀들의 숨겨진 과거」특별 방송",
+      "category": "broadcast",
+      "start": "2026-08-28 20:30",
+      "end": "2026-08-28 21:30",
+      "url": "https://www.hoyolab.com/article/46427336",
+      "detailUrl": "https://www.subgamecals.com/events?q=3.2%20%EB%B2%84%EC%A0%84%20%E3%80%8C%EA%B7%B8%EB%85%80%EB%93%A4%EC%9D%98%20%EC%88%A8%EA%B2%A8%EC%A7%84%20%EA%B3%BC%EA%B1%B0%E3%80%8D%ED%8A%B9%EB%B3%84%20%EB%B0%A9%EC%86%A1"
     },
     {
       "id": "a99c178e-d99c-4862-b27b-e1c92388b562",
@@ -281,6 +291,16 @@
       "end": "2026-08-29 20:20",
       "url": "https://game.naver.com/lounge/WutheringWaves/board/detail/7823821",
       "detailUrl": "https://www.subgamecals.com/events?q=%EB%AA%85%EC%A1%B0%20%EC%9B%94%EB%93%9C%20%ED%88%AC%EC%96%B4%E3%80%8CTo%20the%20New%20World%E3%80%8D"
+    },
+    {
+      "id": "82f69201-a791-49fb-9365-c5eb4668eb9b",
+      "game": "zzz",
+      "title": "3.2 버전 「그녀들의 숨겨진 과거」업데이트",
+      "category": "update",
+      "start": "2026-09-09 12:00",
+      "end": "2026-10-21 04:59",
+      "url": "https://www.subgamecals.com/events?q=3.2%20%EB%B2%84%EC%A0%84%20%E3%80%8C%EA%B7%B8%EB%85%80%EB%93%A4%EC%9D%98%20%EC%88%A8%EA%B2%A8%EC%A7%84%20%EA%B3%BC%EA%B1%B0%E3%80%8D%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8",
+      "detailUrl": "https://www.subgamecals.com/events?q=3.2%20%EB%B2%84%EC%A0%84%20%E3%80%8C%EA%B7%B8%EB%85%80%EB%93%A4%EC%9D%98%20%EC%88%A8%EA%B2%A8%EC%A7%84%20%EA%B3%BC%EA%B1%B0%E3%80%8D%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
     },
     {
       "id": "75598927-e9f9-46b6-961a-58a7adf6804f",
@@ -297,7 +317,7 @@
       "game": "hsr",
       "title": "워프「어벤츄린·웨이브」&「애쉬베일」",
       "category": "banner",
-      "start": "2026-09-16 13:00",
+      "start": "2026-09-12 13:00",
       "end": "2026-09-28 06:59",
       "url": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EC%96%B4%EB%B2%A4%EC%B8%84%EB%A6%B0%C2%B7%EC%9B%A8%EC%9D%B4%EB%B8%8C%E3%80%8D%26%E3%80%8C%EC%95%A0%EC%89%AC%EB%B2%A0%EC%9D%BC%E3%80%8D",
       "detailUrl": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EC%96%B4%EB%B2%A4%EC%B8%84%EB%A6%B0%C2%B7%EC%9B%A8%EC%9D%B4%EB%B8%8C%E3%80%8D%26%E3%80%8C%EC%95%A0%EC%89%AC%EB%B2%A0%EC%9D%BC%E3%80%8D"
