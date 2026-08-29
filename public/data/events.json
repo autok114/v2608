@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T04:22:54.178Z",
+  "updatedAt": "2026-08-29T02:50:11.853Z",
   "source": "https://www.subgamecals.com",
   "events": [
     {
@@ -303,6 +303,16 @@
       "detailUrl": "https://www.subgamecals.com/events?q=3.2%20%EB%B2%84%EC%A0%84%20%E3%80%8C%EA%B7%B8%EB%85%80%EB%93%A4%EC%9D%98%20%EC%88%A8%EA%B2%A8%EC%A7%84%20%EA%B3%BC%EA%B1%B0%E3%80%8D%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"
     },
     {
+      "id": "0afbc640-2f52-43ed-a3f9-f7bbc06b1061",
+      "game": "zzz",
+      "title": "변조「클라렛·플린트」&「남궁우」",
+      "category": "banner",
+      "start": "2026-09-09 12:00",
+      "end": "2026-09-30 12:59",
+      "url": "https://www.subgamecals.com/events?q=%EB%B3%80%EC%A1%B0%E3%80%8C%ED%81%B4%EB%9D%BC%EB%A0%9B%C2%B7%ED%94%8C%EB%A6%B0%ED%8A%B8%E3%80%8D%26%E3%80%8C%EB%82%A8%EA%B6%81%EC%9A%B0%E3%80%8D",
+      "detailUrl": "https://www.subgamecals.com/events?q=%EB%B3%80%EC%A1%B0%E3%80%8C%ED%81%B4%EB%9D%BC%EB%A0%9B%C2%B7%ED%94%8C%EB%A6%B0%ED%8A%B8%E3%80%8D%26%E3%80%8C%EB%82%A8%EA%B6%81%EC%9A%B0%E3%80%8D"
+    },
+    {
       "id": "75598927-e9f9-46b6-961a-58a7adf6804f",
       "game": "wuwa",
       "title": "튜닝 「경연」&「히유키」&「모니에」",
@@ -321,6 +331,16 @@
       "end": "2026-09-28 06:59",
       "url": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EC%96%B4%EB%B2%A4%EC%B8%84%EB%A6%B0%C2%B7%EC%9B%A8%EC%9D%B4%EB%B8%8C%E3%80%8D%26%E3%80%8C%EC%95%A0%EC%89%AC%EB%B2%A0%EC%9D%BC%E3%80%8D",
       "detailUrl": "https://www.subgamecals.com/events?q=%EC%9B%8C%ED%94%84%E3%80%8C%EC%96%B4%EB%B2%A4%EC%B8%84%EB%A6%B0%C2%B7%EC%9B%A8%EC%9D%B4%EB%B8%8C%E3%80%8D%26%E3%80%8C%EC%95%A0%EC%89%AC%EB%B2%A0%EC%9D%BC%E3%80%8D"
+    },
+    {
+      "id": "647a38ae-0e72-4596-977c-d205c53d5b1c",
+      "game": "zzz",
+      "title": "변조「록시·이프리타·프라이스」&「프로미아」",
+      "category": "banner",
+      "start": "2026-09-30 13:00",
+      "end": "2026-10-20 15:59",
+      "url": "https://www.subgamecals.com/events?q=%EB%B3%80%EC%A1%B0%E3%80%8C%EB%A1%9D%EC%8B%9C%C2%B7%EC%9D%B4%ED%94%84%EB%A6%AC%ED%83%80%C2%B7%ED%94%84%EB%9D%BC%EC%9D%B4%EC%8A%A4%E3%80%8D%26%E3%80%8C%ED%94%84%EB%A1%9C%EB%AF%B8%EC%95%84%E3%80%8D",
+      "detailUrl": "https://www.subgamecals.com/events?q=%EB%B3%80%EC%A1%B0%E3%80%8C%EB%A1%9D%EC%8B%9C%C2%B7%EC%9D%B4%ED%94%84%EB%A6%AC%ED%83%80%C2%B7%ED%94%84%EB%9D%BC%EC%9D%B4%EC%8A%A4%E3%80%8D%26%E3%80%8C%ED%94%84%EB%A1%9C%EB%AF%B8%EC%95%84%E3%80%8D"
     }
   ]
 }
